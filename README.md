@@ -1,2 +1,2 @@
-# dsa-golang
-learn data structure and algorithm in golang 
+# data-structure-and-algorithms-in-Go
+Basic data structure and algorithm in Golang
