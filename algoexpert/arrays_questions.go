@@ -18,3 +18,27 @@ func NonConstructibleChange(coins []int) int {
 
 	return cum + 1
 }
+
+func TransposeMatrix(input [][]int) [][]int {
+	rowLength := len(input)
+	colLength := len(input[0])
+	output := make([][]int, 0)
+	//[row][column]
+	//[  c1 c2 c3
+	//   [1,2,3]  row 1
+	//   [4,5,6]  row 2
+	//   [7,8, 9]  row 3
+	//]
+
+	for i := 0; i < colLength; i++ {
+		newRow := make([]int, 0)
+		for j := 0; j < rowLength; j++ {
+			//0  0,0 -> 1 , 1,0-> 4, 3,0-> 7
+			//1  0,1 -> 2 , 1,1-> 5  2,1 -> 8
+			newRow = append(newRow, input[j][i])
+		}
+		output = append(output, newRow)
+	}
+
+	return output
+}
