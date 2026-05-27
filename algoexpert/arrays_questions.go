@@ -42,3 +42,31 @@ func TransposeMatrix(input [][]int) [][]int {
 
 	return output
 }
+
+func ThreeNumberSum(array []int, target int) [][]int {
+	// Write your code here.
+
+	sort.Ints(array)
+	response := make([][]int, 0)
+	for key, cN := range array {
+
+		left := key + 1
+		right := len(array) - 1
+
+		for left < right {
+			sum := cN + array[left] + array[right]
+
+			if sum == target {
+				response = append(response, []int{cN, array[left], array[right]})
+				left++
+				right--
+			} else if sum < target {
+				left++
+			} else {
+				right--
+			}
+		}
+
+	}
+	return response
+}
