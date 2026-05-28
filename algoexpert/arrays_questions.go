@@ -70,3 +70,37 @@ func ThreeNumberSum(array []int, target int) [][]int {
 	}
 	return response
 }
+
+func SmallestDifference(array1, array2 []int) []int {
+	sort.Ints(array1)
+	sort.Ints(array2)
+
+	pOne, pTwo := 0, 0
+	smallestDiff := math.MaxInt
+	bestPair := []int{}
+
+	for pOne < len(array1) && pTwo < len(array2) {
+		first := array1[pOne]
+		second := array2[pTwo]
+
+		diff := first - second
+		if diff < 0 {
+			diff = -diff
+		}
+
+		if diff < smallestDiff {
+			smallestDiff = diff
+			bestPair = []int{first, second}
+		}
+
+		if first < second {
+			pOne++
+		} else if second < first {
+			pTwo++
+		} else {
+			return []int{first, second}
+		}
+	}
+
+	return bestPair
+}
