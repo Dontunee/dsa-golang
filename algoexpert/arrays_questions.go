@@ -1,6 +1,9 @@
 package algoexpert
 
-import "sort"
+import (
+	"math"
+	"sort"
+)
 
 func NonConstructibleChange(coins []int) int {
 
@@ -103,4 +106,43 @@ func SmallestDifference(array1, array2 []int) []int {
 	}
 
 	return bestPair
+}
+
+func LongestPeak(array []int) int {
+
+	if len(array) < 3 {
+		return 0
+	}
+	left := 0
+	peak := 1
+	right := 2
+	maxPeak := 0
+	for peak < len(array)-1 {
+		if array[peak] > array[left] &&
+			array[peak] > array[right] {
+			currentPeak := 3
+			tempLeft := left - 1
+			tempRight := right + 1
+			// Extend down the left side.
+			for tempLeft >= 0 &&
+				array[tempLeft] < array[tempLeft+1] {
+				tempLeft--
+				currentPeak++
+			}
+			// Extend down the right side.
+			for tempRight < len(array) &&
+				array[tempRight] < array[tempRight-1] {
+				tempRight++
+				currentPeak++
+			}
+			if currentPeak > maxPeak {
+				maxPeak = currentPeak
+			}
+		}
+		left++
+		peak++
+		right++
+	}
+	return maxPeak
+
 }
